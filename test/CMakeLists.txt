@@ -1,0 +1,17 @@
+add_custom_target(livestats_tests)
+
+macro(add_livestats_test name)
+  add_executable(${name} ${name}.cpp)
+  add_test(NAME ${name} COMMAND ${name})
+  add_dependencies(livestats_tests ${name})
+  target_link_libraries(${name} PUBLIC LiveStats PRIVATE Boost::Boost)
+endmacro()
+
+add_livestats_test(naive_mean_estimator_tests)
+add_livestats_test(sliding_time_window_mean_estimator_tests)
+add_livestats_test(sliding_time_window_variance_estimator_tests)
+add_livestats_test(sliding_window_mean_estimator_tests)
+add_livestats_test(sliding_window_variance_estimator_tests)
+add_livestats_test(welford_mean_estimator_tests)
+add_livestats_test(welford_variance_estimator_tests)
+add_livestats_test(zscore_outlier_estimator_adaptor_tests)
